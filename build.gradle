@@ -40,15 +40,16 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
     // https://mvnrepository.com/artifact/com.h2database/h2
     implementation 'com.h2database:h2:2.1.212'
 
-// https://mvnrepository.com/artifact/org.projectlombok/lombok
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     compileOnly 'org.projectlombok:lombok:1.18.24'
 
 
-// https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
     implementation 'org.hibernate.orm:hibernate-core:6.1.0.Final'
 
     implementation 'org.flywaydb:flyway-core:9.17.0'
