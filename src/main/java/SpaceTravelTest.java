@@ -22,9 +22,9 @@ public class SpaceTravelTest {
         System.out.println(clientCrudService.getById(1));
         System.out.println(clientCrudService.getById(10));
         System.out.println(clientCrudService.getById(11));
-        clientCrudService.update(5, "Linda");
+        clientCrudService.update(1, "Linda");
         System.out.println(clientCrudService.listAll());
-        clientCrudService.deleteById(5);
+        clientCrudService.deleteById(1);
         System.out.println(clientCrudService.listAll());
 
         PlanetCrudService planetCrudService = new PlanetCrudService();
@@ -40,19 +40,19 @@ public class SpaceTravelTest {
 
         TicketCrudService ticketCrudService = new TicketCrudService();
 
-        ticketCrudService.create(clientCrudService.getById(1),
+        ticketCrudService.create(clientCrudService.getById(2),
                 planetCrudService.getById("PLANET1"),
                 planetCrudService.getById("PLANET2"));
 
-//        ticketCrudService.create(null,
-//                planetCrudService.getById("PLANET1"),
-//                planetCrudService.getById("PLANET2"));
-//        ticketCrudService.create(clientCrudService.getById(1),
-//                null,
-//                planetCrudService.getById("PLANET3"));
-//        ticketCrudService.create(null,
-//                null,
-//                null);
+        ticketCrudService.create(null,
+                planetCrudService.getById("PLANET1"),
+                planetCrudService.getById("PLANET2"));
+        ticketCrudService.create(clientCrudService.getById(1),
+                null,
+                planetCrudService.getById("PLANET3"));
+        ticketCrudService.create(null,
+                null,
+                null);
 
         HibernateUtil.getInstance().close();
     }

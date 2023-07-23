@@ -3,8 +3,9 @@ package services;
 import entities.Client;
 import entities.Planet;
 import entities.Ticket;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
+
 import util.HibernateUtil;
+
 
 import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
@@ -15,8 +16,20 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class TicketCrudService {
+    //private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
+    private static TicketCrudService instance;
     private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
 
+    public static TicketCrudService getInstance() {
+        if (instance == null) {
+            synchronized (TicketCrudService.class) {
+                if (instance == null) {
+                    instance = new TicketCrudService();
+                }
+            }
+        }
+        return instance;
+    }
     public void create(Client client, Planet fromPlanet, Planet toPlanet) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -44,7 +57,7 @@ public class TicketCrudService {
         Transaction transaction = session.beginTransaction();
         Ticket ticket = session.get(Ticket.class, id);
         ticket.setClient(client);
-        session.persist(ticket);
+        session.update(ticket);
         transaction.commit();
         session.close();
     }

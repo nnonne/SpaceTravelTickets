@@ -33,7 +33,7 @@ public class PlanetCrudService {
         Transaction transaction = session.beginTransaction();
         Planet planet = session.get(Planet.class, id);
         planet.setName(name);
-        session.persist(planet);
+        session.update(planet);
         transaction.commit();
         session.close();
     }

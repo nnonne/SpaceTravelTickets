@@ -32,7 +32,7 @@ public class ClientCrudService {
         Transaction transaction = session.beginTransaction();
         Client client = session.get(Client.class, id);
         client.setName(name);
-        session.persist(client);
+        session.update(client);
         transaction.commit();
         session.close();
     }
